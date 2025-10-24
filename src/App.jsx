@@ -42,12 +42,14 @@ export default function App() {
       <section className="text-center py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-500/10 blur-3xl" />
         <motion.h2
-          initial={{ opacity: 0, y: 50, scale: 0.97, filter: 'blur(15px)' }}
-          animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 30, scale: 0.985 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
-            duration: 1.6,
-            ease: [0.25, 0.1, 0.25, 1], // custom cubic-bezier for smooth in/out
+            duration: 1.4,
+            ease: [0.16, 1, 0.3, 1], // "easeOutQuart" curve for butter-smooth end
+            delay: 0.2,
           }}
+          style={{ willChange: "transform, opacity" }}
           className="text-6xl md:text-7xl font-extrabold text-blue-950 drop-shadow-sm mb-8 tracking-tight"
         >
           Building the Future of the Web
