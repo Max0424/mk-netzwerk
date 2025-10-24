@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion'
 import { Shield, Monitor, Paintbrush, Zap, Handshake, Lock } from 'lucide-react'
 
+const scrollToSection = (id) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
 export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 text-gray-900 font-sans overflow-hidden">
@@ -17,14 +24,15 @@ export default function App() {
         </motion.div>
 
         <nav className="hidden md:flex space-x-10 text-blue-900 font-semibold">
-          <a href="#services" className="hover:text-purple-600 transition">Services</a>
-          <a href="#about" className="hover:text-purple-600 transition">About</a>
-          <a href="#contact" className="hover:text-purple-600 transition">Contact</a>
+          <a onClick={(e) => { e.preventDefault(); scrollToSection('services') }} href="#services" className="hover:text-purple-600 transition cursor-pointer">Services</a>
+          <a onClick={(e) => { e.preventDefault(); scrollToSection('about') }} href="#about" className="hover:text-purple-600 transition cursor-pointer">About</a>
+          <a onClick={(e) => { e.preventDefault(); scrollToSection('contact') }} href="#contact" className="hover:text-purple-600 transition cursor-pointer">Contact</a>
         </nav>
 
         <a
+          onClick={(e) => { e.preventDefault(); scrollToSection('contact') }}
           href="#contact"
-          className="bg-gradient-to-r from-blue-600 to-purple-500 text-white px-6 py-2.5 rounded-2xl shadow-lg hover:scale-105 transition-transform"
+          className="bg-gradient-to-r from-blue-600 to-purple-500 text-white px-6 py-2.5 rounded-2xl shadow-lg hover:scale-105 transition-transform cursor-pointer"
         >
           Get Started
         </a>
@@ -34,10 +42,13 @@ export default function App() {
       <section className="text-center py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-500/10 blur-3xl" />
         <motion.h2
-          initial={{ opacity: 0, y: 80, filter: 'blur(20px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
-          className="text-6xl md:text-7xl font-extrabold text-blue-950 drop-shadow-sm mb-8"
+          initial={{ opacity: 0, y: 50, scale: 0.97, filter: 'blur(15px)' }}
+          animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+          transition={{
+            duration: 1.6,
+            ease: [0.25, 0.1, 0.25, 1], // custom cubic-bezier for smooth in/out
+          }}
+          className="text-6xl md:text-7xl font-extrabold text-blue-950 drop-shadow-sm mb-8 tracking-tight"
         >
           Building the Future of the Web
         </motion.h2>
@@ -49,8 +60,9 @@ export default function App() {
 
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5 }}>
           <a
+            onClick={(e) => { e.preventDefault(); scrollToSection('contact') }}
             href="#contact"
-            className="bg-gradient-to-r from-blue-700 to-purple-600 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl hover:scale-105 hover:shadow-[0_0_30px_rgba(120,70,255,0.4)] transition-all inline-block"
+            className="bg-gradient-to-r from-blue-700 to-purple-600 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl hover:scale-105 hover:shadow-[0_0_30px_rgba(120,70,255,0.4)] transition-all inline-block cursor-pointer"
           >
             Get Your Free Consultation
           </a>
@@ -100,8 +112,9 @@ export default function App() {
             <br />We combine creativity, performance, and security to deliver breathtaking results that attract and retain clients.
           </p>
           <a
+            onClick={(e) => { e.preventDefault(); scrollToSection('contact') }}
             href="#contact"
-            className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-10 py-4 text-lg rounded-2xl shadow-xl hover:scale-105 transition-transform inline-block"
+            className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-10 py-4 text-lg rounded-2xl shadow-xl hover:scale-105 transition-transform inline-block cursor-pointer"
           >
             Learn More
           </a>
