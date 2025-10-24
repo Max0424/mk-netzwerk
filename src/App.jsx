@@ -40,7 +40,7 @@ export default function App() {
 
       {/* Hero */}
       <section className="text-center py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-500/10 blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-500/10 blur-3xl pointer-events-none" />
         <motion.h2
           initial={{ opacity: 0, y: 30, scale: 0.985 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -114,8 +114,7 @@ export default function App() {
             <br />We combine creativity, performance, and security to deliver breathtaking results that attract and retain clients.
           </p>
           <a
-            onClick={(e) => { e.preventDefault(); scrollToSection('contact') }}
-            href="#contact"
+            href="/about"
             className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-10 py-4 text-lg rounded-2xl shadow-xl hover:scale-105 transition-transform inline-block cursor-pointer"
           >
             Learn More
@@ -166,11 +165,12 @@ export default function App() {
             Ready to transform your website into a high-performing masterpiece? Reach out today — we’ll get back to you within 24 hours.
           </p>
           <a
-            href="mailto:hello@mk-netzwerk.example"
+            href="/contact"
             className="bg-white text-blue-700 font-semibold px-10 py-4 rounded-2xl hover:bg-blue-100 transition inline-block"
           >
             Contact Us
           </a>
+
         </div>
       </section>
 
