@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 export default function ContactForm() {
+  const { t } = useTranslation()
   const [status, setStatus] = useState("idle")
 
   const handleSubmit = async (event) => {
@@ -32,51 +34,57 @@ export default function ContactForm() {
         className="w-full max-w-2xl bg-white shadow-2xl rounded-3xl p-10 border border-gray-100"
       >
         <h1 className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-blue-700 to-purple-600 bg-clip-text text-transparent">
-          Contact Us
+          {t('contactForm.title')}
         </h1>
 
         {status === "success" ? (
           <div className="text-center text-green-600 font-semibold text-lg">
-            ✅ Your message has been sent successfully!<br />
-            We’ll get back to you soon.
+            ✅ {t('contactForm.success.line1')}<br />
+            {t('contactForm.success.line2')}
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">Full Name</label>
+              <label className="block text-gray-700 font-semibold mb-2">
+                {t('contactForm.name.label')}
+              </label>
               <input
                 type="text"
                 name="name"
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Enter your full name"
+                placeholder={t('contactForm.name.placeholder')}
               />
             </div>
 
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">Email Address</label>
+              <label className="block text-gray-700 font-semibold mb-2">
+                {t('contactForm.email.label')}
+              </label>
               <input
                 type="email"
                 name="email"
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Enter your email"
+                placeholder={t('contactForm.email.placeholder')}
               />
             </div>
 
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">Preferred Language</label>
+              <label className="block text-gray-700 font-semibold mb-2">
+                {t('contactForm.language.label')}
+              </label>
               <div className="relative">
                 <select
                   name="language"
                   required
                   className="appearance-none w-full px-4 py-3 border border-gray-300 rounded-2xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 font-medium"
                 >
-                  <option value="English">English</option>
-                  <option value="German">German</option>
-                  <option value="Spanish">Spanish</option>
-                  <option value="Polish">Polish</option>
-                  <option value="Russian">Russian</option>
+                  <option value="English">{t('contactForm.language.english')}</option>
+                  <option value="German">{t('contactForm.language.german')}</option>
+                  <option value="Spanish">{t('contactForm.language.spanish')}</option>
+                  <option value="Polish">{t('contactForm.language.polish')}</option>
+                  <option value="Russian">{t('contactForm.language.russian')}</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-gray-400">
                   <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -87,23 +95,27 @@ export default function ContactForm() {
             </div>
 
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">Subject</label>
+              <label className="block text-gray-700 font-semibold mb-2">
+                {t('contactForm.subject.label')}
+              </label>
               <input
                 type="text"
                 name="subject"
                 className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Subject (optional)"
+                placeholder={t('contactForm.subject.placeholder')}
               />
             </div>
 
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">Message</label>
+              <label className="block text-gray-700 font-semibold mb-2">
+                {t('contactForm.message.label')}
+              </label>
               <textarea
                 name="message"
                 rows="5"
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
-                placeholder="Write your message here..."
+                placeholder={t('contactForm.message.placeholder')}
               ></textarea>
             </div>
 
@@ -118,12 +130,12 @@ export default function ContactForm() {
                   : 'bg-gradient-to-r from-blue-700 to-purple-600 text-white hover:shadow-[0_0_25px_rgba(120,70,255,0.4)]'
               }`}
             >
-              {status === "submitting" ? "Sending..." : "Send Message"}
+              {status === "submitting" ? t('contactForm.button.sending') : t('contactForm.button.default')}
             </motion.button>
 
             {status === "error" && (
               <p className="text-red-600 text-center font-medium mt-4">
-                ❌ Something went wrong. Please try again later.
+                ❌ {t('contactForm.error')}
               </p>
             )}
           </form>
